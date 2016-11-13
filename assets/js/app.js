@@ -5,52 +5,51 @@ var webContent = '/web/true';
 
 
 // clear search results when clear button is hit
-$('#resetbutton').on('click', function (){
-  $('.results').empty();
+$('#resetbutton').on('click', function() {
+    $('.results').empty();
+    $('#searchbar').val() = '';
 
 });
 
 
 
 // When form is submitted get values
-$('#submitbutton').on('click', function () {
+$('#submitbutton').on('click', function() {
     event.preventDefault();
     var title = $('#searchbar').val();
-		console.log(title);
+    console.log(title);
 
 
 
-// Display all shows with title matches
-		$.get(searchUrl + title , function (data){
-			console.log(data);
-			for (var i = 0; i < data.results.length; ++i){
-				$('.results').append('<section' + ' id ="' + data.results[i].id +'">'
-					+  '<h3>' + data.results[i].title + ' ' +  data.results[i].id + '</h3>'
-					+	'<img src="' + data.results[i].artwork_304x171 + '"/>'
-						+ '<hr />'
-							+ '</section>');
-	}
-})
-})
-
-
-
-$('.results').on('click','section', function (event){
-  $('.results').empty();
-  var selected = $(this).attr('id');
-  $.get(tvIdUrl + selected , function(data){
-    $('.results').append('<div>'
-      + '<img src="' + data.banner + '"/>'
-      + '<h1>' + data.title + '</h2>'
-      + '<p>' + data.overview + '</p>'
-+ '</div>'  );
-return tvIdUrl + selected + showParams + 'hulu_plus' + webContent;
-$.then(function (){
-     console.log( data.results[0].title );
+    // Display all shows with title matches
+    $.get(searchUrl + title, function(data) {
+        console.log(data);
+        for (var i = 0; i < data.results.length; ++i) {
+            $('.results').append('<li class="col l4 m6 s12 row"' + 'id ="' + data.results[i].id + '">' +
+                '<div class="card">' +
+                '<span class="card-title">' + data.results[i].title + ' ' + data.results[i].id + '</span>' +
+                '<div class="card-image"> <img src="' + data.results[i].artwork_608x342 + '"/>' +
+                '</div></div>' +
+                '</li>');
+        }
+    })
 })
 
 
 
+$('.results').on('click', 'section', function(event) {
+    $('.results').empty();
+    var selected = $(this).attr('id');
+    $.get(tvIdUrl + selected, function(data) {
+        $('.results').append('<div>' +
+            '<img src="' + data.banner + '"/>' +
+            '<h1>' + data.title + '</h2>' +
+            '<p>' + data.overview + '</p>' +
+            '</div>');
+        return tvIdUrl + selected + showParams + 'hulu_plus' + webContent;
+        $.then(function() {
+            console.log(data.results[0].title);
+        })
 
 
 
@@ -60,8 +59,7 @@ $.then(function (){
 
 
 
-
-  })
+    })
 
 
 })
