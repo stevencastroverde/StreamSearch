@@ -2,52 +2,48 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Subscription Search</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link href="assets/main.css" rel='stylesheet' >
-</head>
-	<header class="navbar-fixed z-depth-4">
-		<nav class="row">
-			<div class="nav-wrapper">
-				<a href='#!' class='brand-logo col l3'>Subscription</a>
-					<form>
-						<div class="input-field left col l4 offset-l2">
-						<input placeholder='Search TV Show Titles' type="text" name="titlesearch" id='searchbar' value="" />
-					   <label for="searchbar"><i class="material-icons">search</i></label>
-						</div>
-						<div class="col l3">
-							<input  type='checkbox' id='hulu' name='hulu' value='hulu_plus' />
-							<label for="hulu" class='white-text'>Hulu</label>
-							<input type="checkbox" id='netflix' name='netflix' value='netflix' />
-							<label for="netflix" class='white-text'>Netflix</label>
-							<input type='checkbox' id='amazon' name='amazon prime' value='amazon_prime' />
-							<label for="amazon" class='white-text'>Amazon Prime</label>
-						</div>
-						<div col l2>
-							<a class="waves-effect waves-light btn" id="submitbutton">Search!</a>
-			 			<a class="waves-effect waves-light btn" id='resetbutton'>Clear</a>
-			 		</form>
-					</div>
-			</div>
-	</nav>
+		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+		 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+		 <link rel="stylesheet" href="assets/css/landingpage.css" >
+		<title>Subscripton Search</title>
+	</head>
+	<header class='green accent-1 z-depth-4 col sm12 '>
+		<div class='container'>
+
+
+		<h1 class='white-text'>Subcription Search</h1>
+
+		</div>
 	</header>
-	<body>
-		<!-- <form>
-			<label> TV Show<input type="search" name="titlesearch" id='searchbar' value="" /></label>
-			<input type="submit" name="search" id="submitbutton"></input>
-			<button type='reset' name="reset" id='resetbutton'>Clear</button>
-		</form> -->
-		<main class="results container">
-			<ul class='row'>
 
 
-
-			</ul>
+	<body >
+		<main class="container ">
+			<h3 class='center-align grey-text text-darken-2'>Now Search everywhere for what you want to watch!</h2>
+			<p class='center-align'>
+				Subscription search allows you to search Netflix, Hulu, and Amazon Prime convenienlty all in one place. To start select a button below.
+			</p>
+			<div class='row'>
+			<a class='waves-effect waves-green btn-large col s2 m3  l3 offset-s3 offset-m2 offset-l2'><i class="material-icons left">movie</i>Search Movies</a>
+			<a href="tvsearch.html" class='waves-effect waves-light btn-large col s2 m3 l3 offset-s2 offset-m2 offset-l2 '><i class="material-icons right">tv</i>Search TV</a>
+			</div>
 		</main>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-		<script src="./assets/js/app.js"></script>
+
+
+
+
+
+
+
+        <footer class="page-footer green accent-1 z-depth-4">
+          <div class="footer-copyright">
+            <div class="container">
+            © 2016 Steven Castroverde
+            </div>
+          </div>
+        </footer>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 	</body>
 </html>

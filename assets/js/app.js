@@ -7,7 +7,7 @@ var webContent = '/web/true';
 // clear search results when clear button is hit
 $('#resetbutton').on('click', function() {
     $('.results').empty();
-    $('#searchbar').val() = '';
+    $('#searchbar').text() = '';
 
 });
 
@@ -27,7 +27,7 @@ $('#submitbutton').on('click', function() {
         for (var i = 0; i < data.results.length; ++i) {
             $('.results').append('<li class="col l4 m6 s12 row"' + 'id ="' + data.results[i].id + '">' +
                 '<div class="card">' +
-                '<span class="card-title">' + data.results[i].title + ' ' + data.results[i].id + '</span>' +
+                '<span class="card-title">' + data.results[i].title + '</span>' +
                 '<div class="card-image"> <img src="' + data.results[i].artwork_608x342 + '"/>' +
                 '</div></div>' +
                 '</li>');
@@ -37,29 +37,30 @@ $('#submitbutton').on('click', function() {
 
 
 
-$('.results').on('click', 'section', function(event) {
+$('.results').on('click','li', function(event) {
     $('.results').empty();
     var selected = $(this).attr('id');
+    console.log(selected);
     $.get(tvIdUrl + selected, function(data) {
         $('.results').append('<div>' +
             '<img src="' + data.banner + '"/>' +
             '<h1>' + data.title + '</h2>' +
             '<p>' + data.overview + '</p>' +
             '</div>');
-        return tvIdUrl + selected + showParams + 'hulu_plus' + webContent;
-        $.then(function() {
-            console.log(data.results[0].title);
+    //     return tvIdUrl + selected + showParams + 'hulu_plus' + webContent;
+    //     $.then(function() {
+    //         console.log(data.results[0].title);
         })
-
-
-
-
-
-
-
-
-
-    })
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    // })
 
 
 })
