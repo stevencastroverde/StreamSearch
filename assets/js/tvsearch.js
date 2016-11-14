@@ -27,7 +27,7 @@ $('#submitbutton').on('click', function() {
         for (var i = 0; i < data.results.length; ++i) {
             $('.results').append('<li class="col l4 m6 s12 row"' + 'id ="' + data.results[i].id + '">' +
                 '<div class="card">' +
-                '<span class="card-title">' + data.results[i].title + '</span>' +
+                // '<span class="card-title">' + data.results[i].title + '</span>' +
                 '<div class="card-image"> <img src="' + data.results[i].artwork_608x342 + '"/>' +
                 '</div></div>' +
                 '</li>');
@@ -44,7 +44,7 @@ $('.results').on('click','li', function(event) {
     $.get(tvIdUrl + selected, function(data) {
         $('.results').append('<div>' +
             '<img src="' + data.banner + '"/>' +
-            '<h1>' + data.title + '</h2>' +
+            '<h1>' + data.title + '</h1>' +
             '<p>' + data.overview + '</p>' +
             '</div>');
     //     return tvIdUrl + selected + showParams + 'hulu_plus' + webContent;
