@@ -2,7 +2,7 @@ var searchUrl = 'http://api-public.guidebox.com/v1.43/US/rKcE8UjpWG7r8hIkG3Dus9H
 var tvIdUrl = 'http://api-public.guidebox.com/v1.43/US/rKcE8UjpWG7r8hIkG3Dus9HltJxmoYxp/show/';
 var showParams = '/episodes/all/1/100/';
 var webContent = '/web/true';
-
+var checkStr = '';
 
 // clear search results when clear button is hit
 $('#resetbutton').on('click', function() {
@@ -19,8 +19,14 @@ $('#submitbutton').on('click', function() {
     var title = $('#searchbar').val();
     console.log(title);
 
+    // get check box values
+    var checkValues = [];
 
-
+    $.each($('input[type=checkbox]:checked'), function() {
+        checkValues.push($(this).val());
+        return checkStr = checkValues.join(',');
+    });
+    console.log(checkStr);
     // Display all shows with title matches
     $.get(searchUrl + title, function(data) {
         console.log(data);
@@ -37,30 +43,25 @@ $('#submitbutton').on('click', function() {
 
 
 
-$('.results').on('click','li', function(event) {
+ $('.results').on('click', 'li', function(event) {
     $('.results').empty();
     var selected = $(this).attr('id');
     console.log(selected);
-    $.get(tvIdUrl + selected, function(data) {
-        $('.results').append('<div>' +
-            '<img src="' + data.banner + '"/>' +
-            '<h1>' + data.title + '</h1>' +
-            '<p>' + data.overview + '</p>' +
-            '</div>');
-    //     return tvIdUrl + selected + showParams + 'hulu_plus' + webContent;
-    //     $.then(function() {
-    //         console.log(data.results[0].title);
-        })
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    // })
+  var showinfo = $.get(tvIdUrl + selected, function(data,newStr) {
+            $('.results').append('<div>' +
+                '<img src="' + data.banner + '"/>' +
+                '<h1>' + data.title + '</h1>' +
+                '<p>' + data.overview + '</p>' +
+                '</div>');
+                var newStr = tvIdUrl + selected + showParams + checkStr + webContent;
+                return newStr;
+              });
+
+           showinfo.then(function(newStr) {
+               console.log(data.results[0].title);
+
+
+         })
 
 
 })
