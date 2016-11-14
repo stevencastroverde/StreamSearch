@@ -53,12 +53,11 @@ $('#submitbutton').on('click', function() {
                 '<h1>' + data.title + '</h1>' +
                 '<p>' + data.overview + '</p>' +
                 '</div>');
-                var newStr = tvIdUrl + selected + showParams + checkStr + webContent;
-                return newStr;
+
               });
 
-           showinfo.then(function(newStr) {
-               console.log(data.results[0].title);
+           $.get(tvIdUrl + selected + showParams + checkStr + webContent,function(data) {
+               console.log(data.results[1].title, data.results[1].subscription_web_sources[0].link);
 
 
          })
