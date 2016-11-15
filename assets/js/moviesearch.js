@@ -62,8 +62,9 @@ $('.results').on('click','li', function(event) {
               var webSources = data.subscription_web_sources
             for (var i = 0; i < webSources.length; i++){
               if (webSources[i].display_name === "Hulu"){
-                $('.results').append('<a href="' + webSources[i].link + '"/><img src="assets/img/hulu.png"></a>')
-
+                $('.results').append('<a href="' + webSources[i].link + '"><img src="assets/img/hulu.png"/></a>')
+              } else if (webSources[i].display_name === "Netflix"){
+                $('.results').append('<a href="' + webSources[i].link + '"><img src="assets/img/netflix.png"/></a>')
               }
 
 
