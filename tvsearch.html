@@ -1,56 +1,58 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Subscription Search</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link href="assets/main.css" rel='stylesheet' >
+
+<head>
+	<meta charset="utf-8">
+	<title>Subscription Search</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/main.css" media="screen" title="no title">
 </head>
-	<header class="navbar-fixed z-depth-4">
-		<nav class="row">
-			<div class="nav-wrapper">
-				<a href='#!' class='brand-logo col l3'>Subscription</a>
-					<form>
-						<div class="input-field left col l4 offset-l2">
-						<input placeholder='Search TV Show Titles' type="text" name="titlesearch" id='searchbar' value="" />
-					   <label for="searchbar"><i class="material-icons">search</i></label>
-						</div>
-						<div class="col l3">
-							<input  type='checkbox' id='hulu' name='hulu' value='hulu_plus' />
-							<label for="hulu" class='white-text'>Hulu</label>
-							<input type="checkbox" id='netflix' name='netflix' value='netflix' />
-							<label for="netflix" class='white-text'>Netflix</label>
-							<input type='checkbox' id='amazon' name='amazon prime' value='amazon_prime' />
-							<label for="amazon" class='white-text'>Amazon Prime</label>
-						</div>
-						<div col l2>
-							<a class="waves-effect waves-light btn" id="submitbutton">Search!</a>
-			 			<a class="waves-effect waves-light btn" id='resetbutton'>Clear</a>
-			 		</form>
-					</div>
+<header class="navbar-fixed z-depth-4">
+	<nav class="row green">
+		<div class="nav-wrapper">
+			<a href='#!' class='brand-logo col l3'>Subscription</a>
+			<form>
+				<div class="input-field left col l4 offset-l2">
+					<input placeholder='Search TV Show Titles' type="text" name="titlesearch" id='searchbar' value="" />
+					<label for="searchbar"><i class="material-icons">search</i></label>
+				</div>
+				<div class="col l3">
+					<input type='checkbox' id='hulu' name='hulu' value='hulu_plus' />
+					<label for="hulu" class='white-text'>Hulu</label>
+					<input type="checkbox" id='netflix' name='netflix' value='netflix' />
+					<label for="netflix" class='white-text'>Netflix</label>
+					<input type='checkbox' id='amazon' name='amazon prime' value='amazon_prime' />
+					<label for="amazon" class='white-text'>Amazon Prime</label>
+				</div>
+				<div col l2>
+					<a class="waves-effect waves-light btn" id="submitbutton">Search!</a>
+					<a class="waves-effect waves-light btn" id='resetbutton'>Clear</a>
+			</form>
 			</div>
+		</div>
 	</nav>
-	</header>
-	<body>
-		<!-- <form>
+</header>
+
+<body>
+	<a  href="moviesearch.html" class="btn-floating btn-large waves-effect waves-light green" id="floating_button"><i class="material-icons">movie</i></a>
+	<!-- <form>
 			<label> TV Show<input type="search" name="titlesearch" id='searchbar' value="" /></label>
 			<input type="submit" name="search" id="submitbutton"></input>
 			<button type='reset' name="reset" id='resetbutton'>Clear</button>
 		</form> -->
-		<main class="container ">
-			<div class = 'show_description row'>
+	<main class="container ">
+		<div class='show_description row'>
 
-			</div>
-			<div class=' list_of_episodes'>
+		</div>
+		<div class=' list_of_episodes'>
 
+		</div>
+	</main>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+	<script src="./assets/js/tvsearch.js"></script>
+</body>
 
-	</div>
-		</main>
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-		<script src="./assets/js/tvsearch.js"></script>
-	</body>
 </html>
