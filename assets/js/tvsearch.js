@@ -3,11 +3,12 @@ var tvIdUrl = 'https://api-public.guidebox.com/v1.43/US/rKcE8UjpWG7r8hIkG3Dus9Hl
 var showParams = '/episodes/all/1/100/';
 var webContent = '/web/true';
 var checkStr = '';
+var searchResults = {};
 
 // clear search results when clear button is hit
 $('#resetbutton').on('click', function() {
     $('.results').empty();
-    $('#searchbar').text() = '';
+    $('#searchbar').text('');
 
 });
 
@@ -17,6 +18,7 @@ $('#resetbutton').on('click', function() {
 $('#submitbutton').on('click', function() {
     event.preventDefault();
     $('.results').empty();
+    $('.show_description').empty();
     var title = $('#searchbar').val();
     console.log(title);
 
@@ -30,7 +32,7 @@ $('#submitbutton').on('click', function() {
     console.log(checkStr);
     // Display all shows with title matches
     $.get(searchUrl + title, function(data) {
-
+        searchResults = data;
         console.log(data);
         for (var i = 0; i < data.results.length; ++i) {
             $('.results').append('<li class="col l4 m6 s12 row"' + 'id ="' + data.results[i].id + '">' +
@@ -40,7 +42,8 @@ $('#submitbutton').on('click', function() {
                 '</div></div>' +
                 '</li>');
         }
-    })
+  return searchResults;
+})
 })
 
 
@@ -50,7 +53,7 @@ $('#submitbutton').on('click', function() {
     var selected = $(this).attr('id');
     console.log(selected);
   var showinfo = $.get(tvIdUrl + selected, function(data,newStr) {
-            $('.results').append('<div>' +
+            $('.show_description').append('<div>' +
                 '<img src="' + data.banner + '"/>' +
                 '<h1>' + data.title + '</h1>' +
                 '<p>' + data.overview + '</p>' +
@@ -59,10 +62,24 @@ $('#submitbutton').on('click', function() {
               });
 
            $.get(tvIdUrl + selected + showParams + checkStr + webContent,function(data) {
-               console.log(data.results[1].title, data.results[1].subscription_web_sources[0].link);
+               for (var i = 0 ; i < data.results.length; ++i){
+                      var results = data.results[i];
+                 $('.results').append(
+                                '<li>'
+                            +  '<div class="collapsible-header">'+ results.title + '</div>'
+                            +  '<div class="collapsible-body"><p>' +results.overview +'</p></div>'
+                          +  '</li>'
+
+
+
+
+
+
+               )}
+
+
+
+             });
 
 
          })
-
-
-})
