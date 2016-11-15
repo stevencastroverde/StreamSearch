@@ -16,6 +16,7 @@ $('#resetbutton').on('click', function() {
 // When form is submitted get values
 $('#submitbutton').on('click', function() {
     event.preventDefault();
+    $('.results').empty();
     var title = $('#searchbar').val();
     console.log(title);
 
@@ -29,6 +30,7 @@ $('#submitbutton').on('click', function() {
     console.log(checkStr);
     // Display all shows with title matches
     $.get(searchUrl + title, function(data) {
+
         console.log(data);
         for (var i = 0; i < data.results.length; ++i) {
             $('.results').append('<li class="col l4 m6 s12 row"' + 'id ="' + data.results[i].id + '">' +
