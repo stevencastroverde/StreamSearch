@@ -61,7 +61,10 @@ $('.results').on('click','li', function(event) {
             '</div>');
               var webSources = data.subscription_web_sources
             for (var i = 0; i < webSources.length; i++){
-              if (webSources[i].display)
+              if (webSources[i].display_name === "Hulu"){
+                $('.results').append('<a href="' + webSources[i].link + '"/><img src="assets/img/hulu.png"></a>')
+
+              }
 
 
             }
