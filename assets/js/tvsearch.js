@@ -4,11 +4,14 @@ var showParams = '/episodes/all/1/100/';
 var webContent = '/web/true';
 var checkStr = '';
 var searchResults = {};
+$(document).ready(function(){
+  $('.collapsible').collapsible();
 
 // clear search results when clear button is hit
 $('#resetbutton').on('click', function() {
     $('.results').empty();
-    $('#searchbar').text('');
+    $('.show_description').empty();
+    $('#searchbar').clear();
 
 });
 
@@ -17,7 +20,6 @@ $('#resetbutton').on('click', function() {
 // When form is submitted get values
 $('#submitbutton').on('click', function() {
     event.preventDefault();
-    $('.results').empty();
     $('.show_description').empty();
     var title = $('#searchbar').val();
     console.log(title);
@@ -35,51 +37,71 @@ $('#submitbutton').on('click', function() {
         searchResults = data;
         console.log(data);
         for (var i = 0; i < data.results.length; ++i) {
-            $('.results').append('<li class="col l4 m6 s12 row"' + 'id ="' + data.results[i].id + '">' +
+            $('.show_description').append('<div class="col l4 m6 s12 row shows"' + 'data-id="' + data.results[i].id + '">' +
                 '<div class="card">' +
                 // '<span class="card-title">' + data.results[i].title + '</span>' +
                 '<div class="card-image"> <img src="' + data.results[i].artwork_608x342 + '"/>' +
                 '</div></div>' +
-                '</li>');
-        }
-  return searchResults;
-})
-})
-
-
-
- $('.results').on('click', 'li', function(event) {
-    $('.results').empty();
-    var selected = $(this).attr('id');
-    console.log(selected);
-  var showinfo = $.get(tvIdUrl + selected, function(data,newStr) {
-            $('.show_description').append('<div>' +
-                '<img src="' + data.banner + '"/>' +
-                '<h1>' + data.title + '</h1>' +
-                '<p>' + data.overview + '</p>' +
                 '</div>');
-
-              });
-
-           $.get(tvIdUrl + selected + showParams + checkStr + webContent,function(data) {
-               for (var i = 0 ; i < data.results.length; ++i){
-                      var results = data.results[i];
-                 $('.results').append(
-                                '<li>'
-                            +  '<div class="collapsible-header">'+ results.title + '</div>'
-                            +  '<div class="collapsible-body"><p>' +results.overview +'</p></div>'
-                          +  '</li>'
+        }
+        return searchResults;
+    })
+})
 
 
 
+$('.show_description > div').on('click', function(event) {
+    $('.results').empty();
+    var selected = $('this').data('id');
+    console.log(selected);
+    var showinfo = $.get(tvIdUrl + selected, function(data) {
+        $('.show_description').append('<div>' +
+            '<img src="' + data.banner + '"/>' +
+            '<h1>' + data.title + '</h1>' +
+            '<p>' + data.overview + '</p>' +
+            '</div>');
+
+    });
+
+    $.get(tvIdUrl + selected + showParams + checkStr + webContent, function(data) {
+
+        var episodesBySeason = {};
+
+        for (var i = 0; i < data.results.length; i++) {
+            var results = data.results[i];
+
+            if (!episodesBySeason[results.season_number]) {
+                episodesBySeason[results.season_number] = {};
+            }
+            var season = episodesBySeason[data.results[i].season_number];
+            season[results.episode_number] = results;
 
 
 
-               )}
+        }
+        for (var keys in episodesBySeason){
+              $('.results').append('<span> Season ' + keys + '</span>');
+           var epi = episodesBySeason[keys];
+           for (var prop in epi){
+             $('.results').append('<li>'
+                +'<div class="collapsible-header">' + epi[prop].title + '<div>'
+                + '<div class="collapsible-body"><p>' + epi[prop].overview + '</p></div>'
+                + '</li>');
 
 
 
-             });
 
 
-         })
+
+
+
+          }
+
+}
+        }
+
+    )
+
+
+})
+});
