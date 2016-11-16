@@ -1,6 +1,8 @@
 $(document).ready(function() {
     $('.collapsible').collapsible();
-
+    $('.tooltipped').tooltip({
+        delay: 50
+    });
 
 
     var searchUrl = 'https://api-public.guidebox.com/v1.43/US/rKcE8UjpWG7r8hIkG3Dus9HltJxmoYxp/search/title/';
@@ -54,7 +56,7 @@ $(document).ready(function() {
 
 
 
-    $('div').on('click','.shows', function(event) {
+    $('div').on('click', '.shows', function(event) {
         var selected = $(this).attr('id');
         $('.show_description').empty();
         $('.list_of_episodes').empty();
@@ -85,14 +87,22 @@ $(document).ready(function() {
 
                 }
                 for (var keys in episodesBySeason) {
-                    $('.list_of_episodes').append('<h2> Season ' + keys + '</h2>');
+                    $('.list_of_episodes').append('<ul class="collapsible" data-collapsible="accordion id="episodepop">' +
+                        '<li>' +
+                        '<div class="collapsible-header">Season ' + keys + '</div>'
+
+                        +
+                        '</ul >')
                     var epi = episodesBySeason[keys];
                     for (var prop in epi) {
-                        $('.list_of_episodes').append('<ul class="collapsible " data-collapsible="accordion">'
-                          +'<li><div class="collapsible-header">' + epi[prop].title + '<div>' +
-                            '<div class="collapsible-body"><p>' + epi[prop].overview + '</p></div></li>'
-                          + '</ul>');
-                          
+                        $('.episodepop').append(
+														'<li>' +
+                            '<div class="collapsible-header">' + epi[prop].title + '<div>' +
+                            '<div class="collapsible-body"><p>' + epi[prop].overview + '</p></div>' +
+                            '</li>'
+
+                        );
+
 
 
 
