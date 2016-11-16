@@ -1,5 +1,4 @@
-$(document).ready(function(){
-	 $('.tooltipped').tooltip({delay: 50});
+
 
 
 
@@ -84,4 +83,4 @@ resultsDiv.on('click','li', function() {
 
 
 })
- });
+ 
