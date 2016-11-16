@@ -2,13 +2,13 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Subscription Search</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+		<title>Movie Search</title>
+		<link rel="stylesheet" href="assets/sass/materialize.css" media="screen" title="no title">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="assets/css/main.css" media="screen" title="no title">
 </head>
-	<header class="navbar-fixed z-depth-4">
-		<nav class="row">
+	<header class="navbar-fixed z-depth-2">
+		<nav class="row cyan">
 			<div class="nav-wrapper">
 				<a href='#!' class='brand-logo col l3'>Subscription</a>
 					<form>
@@ -25,15 +25,15 @@
 							<label for="amazon" class='white-text'>Amazon Prime</label>
 						</div>
 						<div col l2>
-							<a class="waves-effect waves-light btn" id="submitbutton">Search!</a>
-			 			<a class="waves-effect waves-light btn" id='resetbutton'>Clear</a>
+							<a class=" lime waves-effect waves-light btn" id="submitbutton">Search!</a>
+			 			<a class=" lime waves-effect waves-light btn" id='resetbutton'>Clear</a>
 			 		</form>
 					</div>
 			</div>
 	</nav>
 	</header>
 	<body>
-		<a  href="tvsearch.html" class="btn-floating btn-large waves-effect waves-light green" id="floating_button"><i class="material-icons">tv</i></a>
+		<a  href="tvsearch.html" class="btn-floating btn-large waves-effect waves-light lime" id="floating_button"><i class="material-icons">tv</i></a>
 		<main class="container">
 			<ul class='row results '>
 
@@ -43,7 +43,7 @@
 		</main>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+		<script src="assets/js/materialziejs/bin/materialize.js"></script>
 		<script src="./assets/js/moviesearch.js"></script>
 	</body>
 </html>

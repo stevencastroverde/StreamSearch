@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    $('.collapsible').collapsible();
     $('.tooltipped').tooltip({
         delay: 50
     });
@@ -62,11 +61,12 @@ $(document).ready(function() {
         $('.list_of_episodes').empty();
         console.log(selected);
         var showinfo = $.get(tvIdUrl + selected, function(data) {
-            $('.show_description').append('<div class="center-align">' +
+            $('.show_description').append('<section class="center-align">' +
                 '<img src="' + data.banner + '"/>' +
-                '<h1>' + data.title + '</h1>' +
-                '<p>' + data.overview + '</p>' +
-                '</div>');
+                '<h1 class="grey-text text-darken-4">' + data.title + '</h1>' +
+                '<p class="grey-text text-darken-1">' + data.overview + '</p>' +
+                + '</section>'
+              +'<div class="divider"></div>');
 
         });
 
@@ -87,7 +87,7 @@ $(document).ready(function() {
                         console.log(episodesBySeason)
                 }
                 for (var keys in episodesBySeason) {
-                    $('.list_of_episodes').append('<h2 class=" col s12"> Season '  + keys + '</h2>')
+                    $('.list_of_episodes').append('<h2 class=" col s12 grey-text text-darken-4"> Season '  + keys + '</h2>')
                     var epi = episodesBySeason[keys];
                     for (var prop in epi) {
                         $('.list_of_episodes').append(
@@ -97,11 +97,11 @@ $(document).ready(function() {
                                 + '</div>'
                               +  '<div class="card-content">'
                               +  '<span class="card-title activator grey-text text-darken-4 truncate">'+ epi[prop].title+'<i class="material-icons right">more_vert</i></span>'
-                              + '<p><a href="'+ epi[prop].subscription_web_sources[0].link  + '">Watch Now</a></p>'
+                              + '<p><a class="lime-text"href="'+ epi[prop].subscription_web_sources[0].link  + '">Watch Now</a></p>'
                               +  '</div>'
                               +  '<div class="card-reveal">'
                               +  '<span class="card-title grey-text text-darken-4">'+ epi[prop].title + '<i class="material-icons right">close</i></span>'
-                              +  '<p>'+ epi[prop].overview +'</p>'
+                              +  '<p class="grey-text text-darken-1">'+ epi[prop].overview +'</p>'
                               +  '</div>'
                               +  '</div>'
 
