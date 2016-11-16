@@ -62,7 +62,7 @@ $(document).ready(function() {
         $('.list_of_episodes').empty();
         console.log(selected);
         var showinfo = $.get(tvIdUrl + selected, function(data) {
-            $('.show_description').append('<div>' +
+            $('.show_description').append('<div class="center-align">' +
                 '<img src="' + data.banner + '"/>' +
                 '<h1>' + data.title + '</h1>' +
                 '<p>' + data.overview + '</p>' +
@@ -84,22 +84,27 @@ $(document).ready(function() {
                     season[results.episode_number] = results;
 
 
-
+                        console.log(episodesBySeason)
                 }
                 for (var keys in episodesBySeason) {
-                    $('.list_of_episodes').append('<ul class="collapsible" data-collapsible="accordion id="episodepop">' +
-                        '<li>' +
-                        '<div class="collapsible-header">Season ' + keys + '</div>'
-
-                        +
-                        '</ul >')
+                    $('.list_of_episodes').append('<h2 class=" col s12"> Season '  + keys + '</h2>')
                     var epi = episodesBySeason[keys];
                     for (var prop in epi) {
-                        $('.episodepop').append(
-														'<li>' +
-                            '<div class="collapsible-header">' + epi[prop].title + '<div>' +
-                            '<div class="collapsible-body"><p>' + epi[prop].overview + '</p></div>' +
-                            '</li>'
+                        $('.list_of_episodes').append(
+                            '<div class="card row col l4 m6 s12 hoverable">'
+                              +  '<div class="card-image waves-effect waves-block waves-light">'
+                              +  '<img class="activator" src="'+ epi[prop].thumbnail_608x342 +'">'
+                                + '</div>'
+                              +  '<div class="card-content">'
+                              +  '<span class="card-title activator grey-text text-darken-4 truncate">'+ epi[prop].title+'<i class="material-icons right">more_vert</i></span>'
+                              + '<p><a href="'+ epi[prop].subscription_web_sources[0].link  + '">Watch Now</a></p>'
+                              +  '</div>'
+                              +  '<div class="card-reveal">'
+                              +  '<span class="card-title grey-text text-darken-4">'+ epi[prop].title + '<i class="material-icons right">close</i></span>'
+                              +  '<p>'+ epi[prop].overview +'</p>'
+                              +  '</div>'
+                              +  '</div>'
+
 
                         );
 
