@@ -4,12 +4,13 @@
     var webContent = '/web/true';
     var checkStr = '';
     var searchResults = null;
-
+    var $showdescrip = $('.show_description');
+    var $episodeList = $('.list_of_episodes');
 
     // clear search results when clear button is hit
     $('#resetbutton').on('click', function() {
-        $('.show_description').empty();
-        $('.list_of_episodes').empty();
+        $showdescrip.empty();
+        $episodeList.empty();
         $('#searchbar').val('');
 
     });
@@ -19,7 +20,7 @@
     // When form is submitted get values
     $('#submitbutton').on('click', function() {
         event.preventDefault();
-        $('.show_description').empty();
+        $showdescrip.empty();
         var title = $('#searchbar').val();
         console.log(title);
 
@@ -36,7 +37,7 @@
             searchResults = data;
             console.log(data);
             for (var i = 0; i < data.results.length; ++i) {
-                $('.show_description').append('<div class="col l4 m6 s12 row shows hoverable"' + 'id="' + data.results[i].id + '">' +
+                $showdescrip.append('<div class="col l4 m6 s12 row shows hoverable"' + 'id="' + data.results[i].id + '">' +
                     '<div class="card">' +
                     '<span class="card-title truncate">' + data.results[i].title + '</span>' +
                     '<div class="card-image"> <img src="' + data.results[i].artwork_608x342 + '"/>' +
@@ -50,18 +51,18 @@
 
 
 
-    $('div').on('click', '.shows', function(event) {
+    $('div').on('click','.shows', function(event) {
         var selected = $(this).attr('id');
-        $('.show_description').empty();
-        $('.list_of_episodes').empty();
+        $showdescrip.empty();
+      $episodeList.empty();
         console.log(selected);
         var showinfo = $.get(tvIdUrl + selected, function(data) {
-            $('.show_description').append('<section class="center-align">' +
-                '<img src="' + data.banner + '"/>' +
-                '<h1 class="grey-text text-darken-4">' + data.title + '</h1>' +
-                '<p class="grey-text text-darken-1">' + data.overview + '</p>' +
-                 + '</section>'
-              +'<div class="divider"></div>'
+            $showdescrip.append('<section class="center-align">'
+                + '<img src="' + data.banner + '"/>' 
+                +'<h1 class="grey-text text-darken-4">' + data.title + '</h1>'
+                +'<p class="grey-text text-darken-1">' + data.overview + '</p>'
+                +'</section>'
+              +  '<div class="divider"></div>'
             );
 
         });
@@ -78,38 +79,29 @@
                     }
                     var season = episodesBySeason[data.results[i].season_number];
                     season[results.episode_number] = results;
-
-
-                        console.log(episodesBySeason)
                 }
+
                 for (var keys in episodesBySeason) {
-                    $('.list_of_episodes').append('<h2 class=" col s12 grey-text text-darken-4"> Season '  + keys + '</h2>')
+                    $episodeList.append('<h2 class=" col s12 grey-text text-darken-4"> Season ' + keys + '</h2>')
                     var epi = episodesBySeason[keys];
                     for (var prop in epi) {
-                        $('.list_of_episodes').append(
-                            '<div class="card row col l4 m6 s12  small">'
-                              +  '<div class="card-image waves-effect waves-block waves-light">'
-                              +  '<img class="activator" src="'+ epi[prop].thumbnail_608x342 +'">'
-                                + '</div>'
-                              +  '<div class="card-content">'
-                              +  '<span class="card-title activator grey-text text-darken-4 truncate">'+ epi[prop].title+'<br><i class="material-icons right">info_outline</i></span>'
-                              + '<p><a class="lime-text"href="'+ epi[prop].subscription_web_sources[0].link  + '">Watch Now</a></p>'
-                              +  '</div>'
-                              +  '<div class="card-reveal">'
-                              +  '<span class="card-title grey-text text-darken-4">'+ epi[prop].title + '<i class="material-icons right">close</i></span>'
-                              +  '<p class="grey-text text-darken-1">'+ epi[prop].overview +'</p>'
-                              +  '</div>'
-                              +  '</div>'
+                      $episodeList.append(
+                            '<div class="card row col l4 m6 s12  small">' +
+                            '<div class="card-image waves-effect waves-block waves-light">' +
+                            '<img class="activator" src="' + epi[prop].thumbnail_608x342 + '">' +
+                            '</div>' +
+                            '<div class="card-content">' +
+                            '<span class="card-title activator grey-text text-darken-4 truncate">' + epi[prop].title + '<br><i class="material-icons right">info_outline</i></span>' +
+                            '<p><a class="lime-text"href="' + epi[prop].subscription_web_sources[0].link + '">Watch Now</a></p>' +
+                            '</div>' +
+                            '<div class="card-reveal">' +
+                            '<span class="card-title grey-text text-darken-4">' + epi[prop].title + '<i class="material-icons right">close</i></span>' +
+                            '<p class="grey-text text-darken-1">' + epi[prop].overview + '</p>' +
+                            '</div>' +
+                            '</div>'
 
 
                         );
-
-
-
-
-
-
-
 
                     }
 
