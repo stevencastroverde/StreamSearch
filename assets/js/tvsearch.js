@@ -21,6 +21,7 @@
     $('#submitbutton').on('click', function() {
         event.preventDefault();
         $showdescrip.empty();
+        $episodeList.empty();
         var title = $('#searchbar').val();
         console.log(title);
 
@@ -58,7 +59,7 @@
         console.log(selected);
         var showinfo = $.get(tvIdUrl + selected, function(data) {
             $showdescrip.append('<section class="center-align">'
-                + '<img src="' + data.banner + '"/>' 
+                + '<img src="' + data.banner + '"/>'
                 +'<h1 class="grey-text text-darken-4">' + data.title + '</h1>'
                 +'<p class="grey-text text-darken-1">' + data.overview + '</p>'
                 +'</section>'
