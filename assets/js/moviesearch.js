@@ -57,25 +57,19 @@ resultsDiv.on('click', 'li', function() {
               +  '<p class="col s12 m6 grey-text text-darken-1  ">' + data.overview + '</p>'
                + '<p id="link"></p>'
 							+ '</div>');
-                   var webSources = data.subscription_web_sources;
-									 for(var i = 0 ; i < checkValues.length; i++){
-							 	for (var j = 0; j < webSources.length; j++ ){
-                    console.log(webSources[j].source);
-										if (checkValues[i] === webSources[j]['source']){
-										$('#link').append('<a class="lime-text" href="' + data.subscription_web_sources[j].link + '">Watch Now</a>')
+
+										if (data.subscription_web_sources.length > 0){
+										$('#link').append('<a class="lime-text" href="' + data.subscription_web_sources[0].link + '">Watch Now</a>')
 
 							 		} else {
-							 			$('#link').append('<h2> Sorry the subscriptions you use do not have this movie<.h2>');
+							 			$('#link').append('<h4 class=" grey-text text-darken-4 col s12 m6 "> Sorry the subscriptions you use do not have this movie</h4>');
 
 
                 	}
-							 	}
+							 	})
 							 }
 
 
 
 
-        })
-
-
-})
+        )
