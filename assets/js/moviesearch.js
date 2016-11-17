@@ -60,11 +60,11 @@ resultsDiv.on('click','li', function() {
     console.log(selected);
     $.get(movieIdUrl + selected, function(data) {
         console.log(data);
-        resultsDiv.append('<div class="row movie_poster">' +
-            '<img class="col s12 m6" src="' + data.poster_400x570 + '"/>' +
-             '<h1 class=" grey-text text-darken-4 col s12 m6 ">' + data.title + '</h1>' +
+        resultsDiv.append('<div class="row movie_poster">' 
+          +  '<img class="col s12 m6" src="' + data.poster_400x570 + '"/>'
+            + '<h1 class=" grey-text text-darken-4 col s12 m6 ">' + data.title + '</h1>'
           // + '<h2 class=" col s12 m6  ">' + data.release_year + '</h2>'
-          +  '<p class="col s12 m6 grey-text text-darken-1  ">' + data.overview + '</p>' +
+          +  '<p class="col s12 m6 grey-text text-darken-1  ">' + data.overview + '</p>'
 					+ '<p><a class="lime" href="'+ data.subscription_web_sources[0].link  + '">Watch Now</a></p>'
             + '</div>');
 
@@ -84,4 +84,3 @@ resultsDiv.on('click','li', function() {
 
 
 })
- 
