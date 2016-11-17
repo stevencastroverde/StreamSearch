@@ -1,6 +1,6 @@
 var searchUrl = 'https://api-public.guidebox.com/v1.43/US/rKcE8UjpWG7r8hIkG3Dus9HltJxmoYxp/search/movie/title/';
 var movieIdUrl = 'https://api-public.guidebox.com/v1.43/US/rKcE8UjpWG7r8hIkG3Dus9HltJxmoYxp/movie/';
-var checkStr = '';
+var checkValues = [];
 var resultsDiv = $('.results');
 
 
@@ -23,11 +23,11 @@ $('#submitbutton').on('click', function() {
 
 		$.each($('input[type=checkbox]:checked'), function() {
 				checkValues.push($(this).val());
-				return checkStr = checkValues.join(',');
+				return checkValues;
 		});
 
 
-		console.log(checkStr)
+		console.log(checkValues)
     // Display all shows with title matches
     $.get(searchUrl + title, function(data) {
         console.log(data);
@@ -55,11 +55,22 @@ resultsDiv.on('click', 'li', function() {
                 '<h3 class=" grey-text text-darken-4 col s12 m6 ">' + data.title + '</h3>'
                  + '<h4 class=" col s12 m6 grey-text text-darken-1  ">' + data.release_year + '</h4>'
               +  '<p class="col s12 m6 grey-text text-darken-1  ">' + data.overview + '</p>'
-              + '<p><a class="lime-text" href="' + data.subscription_web_sources[0].link + '">Watch Now</a></p>'
-							+ '</div>');
+               + '<p id="link"></p>'
+							+ '</div>')
+									 for(var i = 0 ; i < checkValues.length; i++){
+							 	for (var j = 0; j < webSources.length; j++ ){
+									 var webSources = data.subscription_web_sources;
+									if (checkValues[i] === webSources[j].source){
+										$('#link').append('<a class="lime-text" href="' + data.subscription_web_sources[j].link + '">Watch Now</a>')
+
+							 		} else {
+							 			$('#link').append('<h2> Sorry the subscriptions you use do not have this movie<.h2>');
+
+							 		}
+							 	}
+							 }
 
 
-							
 
 
         })
