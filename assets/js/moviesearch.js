@@ -32,6 +32,7 @@ $('#resetbutton').on('click', function() {
 // When form is submitted get values
 $('#submitbutton').on('click', function() {
     event.preventDefault();
+		resultsDiv.empty();
     var title = $('#searchbar').val();
     console.log(title);
 
