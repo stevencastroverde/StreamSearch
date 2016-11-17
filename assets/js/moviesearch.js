@@ -1,14 +1,8 @@
-
-
-
-
-
 var searchUrl = 'https://api-public.guidebox.com/v1.43/US/rKcE8UjpWG7r8hIkG3Dus9HltJxmoYxp/search/movie/title/';
 var movieIdUrl = 'https://api-public.guidebox.com/v1.43/US/rKcE8UjpWG7r8hIkG3Dus9HltJxmoYxp/movie/';
-var movieParams = '/1/100/';
-var webContent = '/web';
-var subscritptions = '';
+var checkStr = '';
 var resultsDiv = $('.results');
+
 
 // clear search results when clear button is hit
 $('#resetbutton').on('click', function() {
@@ -18,26 +12,22 @@ $('#resetbutton').on('click', function() {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
 // When form is submitted get values
 $('#submitbutton').on('click', function() {
     event.preventDefault();
-		resultsDiv.empty();
+    resultsDiv.empty();
     var title = $('#searchbar').val();
     console.log(title);
 
+    var checkValues = [];
+
+		$.each($('input[type=checkbox]:checked'), function() {
+				checkValues.push($(this).val());
+				return checkStr = checkValues.join(',');
+		});
 
 
+		console.log(checkStr)
     // Display all shows with title matches
     $.get(searchUrl + title, function(data) {
         console.log(data);
@@ -54,33 +44,25 @@ $('#submitbutton').on('click', function() {
 
 
 
-resultsDiv.on('click','li', function() {
+resultsDiv.on('click', 'li', function() {
     resultsDiv.empty();
     var selected = $(this).attr('id');
     console.log(selected);
     $.get(movieIdUrl + selected, function(data) {
-        console.log(data);
-        resultsDiv.append('<div class="row movie_poster">' 
-          +  '<img class="col s12 m6" src="' + data.poster_400x570 + '"/>'
-            + '<h1 class=" grey-text text-darken-4 col s12 m6 ">' + data.title + '</h1>'
-          // + '<h2 class=" col s12 m6  ">' + data.release_year + '</h2>'
-          +  '<p class="col s12 m6 grey-text text-darken-1  ">' + data.overview + '</p>'
-					+ '<p><a class="lime" href="'+ data.subscription_web_sources[0].link  + '">Watch Now</a></p>'
-            + '</div>');
+            console.log(data);
+            resultsDiv.append('<div class="row movie_poster">' +
+                '<img class="col s12 m6" src="' + data.poster_400x570 + '"/>' +
+                '<h3 class=" grey-text text-darken-4 col s12 m6 ">' + data.title + '</h3>'
+                 + '<h4 class=" col s12 m6 grey-text text-darken-1  ">' + data.release_year + '</h4>'
+              +  '<p class="col s12 m6 grey-text text-darken-1  ">' + data.overview + '</p>'
+              + '<p><a class="lime-text" href="' + data.subscription_web_sources[0].link + '">Watch Now</a></p>'
+							+ '</div>');
 
+
+							
 
 
         })
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    // })
 
 
 })
