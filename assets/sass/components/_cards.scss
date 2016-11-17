@@ -15,12 +15,14 @@
   background-color: $card-bg-color;
   transition: box-shadow .25s;
   border-radius: 2px;
-  @extend .z-depth-1;
+  @extend .z-depth-0;
+  display:flex;
+  align-content: space-between;;
 
 
   .card-title {
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 200;
     &.activator {
       cursor: pointer;
     }

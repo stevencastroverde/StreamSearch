@@ -3,7 +3,7 @@
     var showParams = '/episodes/all/1/100/';
     var webContent = '/web/true';
     var checkStr = '';
-
+    var searchResults = null;
 
 
     // clear search results when clear button is hit
@@ -38,13 +38,14 @@
             for (var i = 0; i < data.results.length; ++i) {
                 $('.show_description').append('<div class="col l4 m6 s12 row shows hoverable"' + 'id="' + data.results[i].id + '">' +
                     '<div class="card">' +
-                    // '<span class="card-title">' + data.results[i].title + '</span>' +
+                    '<span class="card-title truncate">' + data.results[i].title + '</span>' +
                     '<div class="card-image"> <img src="' + data.results[i].artwork_608x342 + '"/>' +
                     '</div></div>' +
                     '</div>');
             }
             return searchResults;
-        })
+            console.log(searchResults);
+        });
     })
 
 
@@ -59,8 +60,9 @@
                 '<img src="' + data.banner + '"/>' +
                 '<h1 class="grey-text text-darken-4">' + data.title + '</h1>' +
                 '<p class="grey-text text-darken-1">' + data.overview + '</p>' +
-                + '</section>'
-              +'<div class="divider"></div>');
+                 + '</section>'
+              +'<div class="divider"></div>'
+            );
 
         });
 
@@ -85,12 +87,12 @@
                     var epi = episodesBySeason[keys];
                     for (var prop in epi) {
                         $('.list_of_episodes').append(
-                            '<div class="card row col l4 m6 s12 hoverable">'
+                            '<div class="card row col l4 m6 s12  small">'
                               +  '<div class="card-image waves-effect waves-block waves-light">'
                               +  '<img class="activator" src="'+ epi[prop].thumbnail_608x342 +'">'
                                 + '</div>'
                               +  '<div class="card-content">'
-                              +  '<span class="card-title activator grey-text text-darken-4 truncate">'+ epi[prop].title+'<i class="material-icons right">more_vert</i></span>'
+                              +  '<span class="card-title activator grey-text text-darken-4 truncate">'+ epi[prop].title+'<br><i class="material-icons right">info_outline</i></span>'
                               + '<p><a class="lime-text"href="'+ epi[prop].subscription_web_sources[0].link  + '">Watch Now</a></p>'
                               +  '</div>'
                               +  '<div class="card-reveal">'
