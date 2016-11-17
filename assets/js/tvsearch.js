@@ -1,15 +1,9 @@
-$(document).ready(function() {
-    $('.tooltipped').tooltip({
-        delay: 50
-    });
-
-
     var searchUrl = 'https://api-public.guidebox.com/v1.43/US/rKcE8UjpWG7r8hIkG3Dus9HltJxmoYxp/search/title/';
     var tvIdUrl = 'https://api-public.guidebox.com/v1.43/US/rKcE8UjpWG7r8hIkG3Dus9HltJxmoYxp/show/';
     var showParams = '/episodes/all/1/100/';
     var webContent = '/web/true';
     var checkStr = '';
-    var searchResults = {};
+
 
 
     // clear search results when clear button is hit
@@ -124,4 +118,3 @@ $(document).ready(function() {
 
 
     })
-});
