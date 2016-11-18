@@ -17,7 +17,6 @@ $('#submitbutton').on('click', function() {
     event.preventDefault();
     resultsDiv.empty();
     var title = $('#searchbar').val();
-    console.log(title);
 
     var checkValues = [];
 
@@ -26,11 +25,8 @@ $('#submitbutton').on('click', function() {
         return checkValues;
 		});
 
-
-		console.log(checkValues)
     // Display all shows with title matches
     $.get(searchUrl + title, function(data) {
-        console.log(data);
         for (var i = 0; i < data.results.length; ++i) {
             resultsDiv.append('<li class="col l4 m6 s12 row hoverable"' + 'id ="' + data.results[i].id + '">' +
                 '<div class="card">' +
@@ -47,9 +43,7 @@ $('#submitbutton').on('click', function() {
 resultsDiv.on('click', 'li', function() {
     resultsDiv.empty();
     var selected = $(this).attr('id');
-    console.log(selected);
     $.get(movieIdUrl + selected, function(data,checkValues) {
-            console.log(checkValues);
             resultsDiv.append('<div class="row movie_poster">' +
                 '<img class="col s12 m6" src="' + data.poster_400x570 + '"/>' +
                 '<h3 class=" grey-text text-darken-4 col s12 m6 ">' + data.title + '</h3>'
