@@ -59,7 +59,7 @@ resultsDiv.on('click', 'li', function() {
 							+ '</div>');
 
 										if (data.subscription_web_sources.length > 0){
-										$('#link').append('<a class="lime-text" href="' + data.subscription_web_sources[0].link + '">Watch Now</a>')
+										$('#link').append('<a class="white-text  lime btn center-align" href="' + data.subscription_web_sources[0].link + '">Watch Now</a>')
 
 							 		} else {
 							 			$('#link').append('<h4 class=" grey-text text-darken-4 col s12 m6 "> Sorry the subscriptions you use do not have this movie</h4>');

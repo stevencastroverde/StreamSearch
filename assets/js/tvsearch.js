@@ -93,7 +93,7 @@
                             '</div>' +
                             '<div class="card-content">' +
                             '<span class="card-title activator grey-text text-darken-4 truncate">' + epi[prop].title + '<br><i class="material-icons right">info_outline</i></span>' +
-                            '<p><a class="lime-text"href="' + epi[prop].subscription_web_sources[0].link + '">Watch Now</a></p>' +
+                            '<span><a class="lime-text btn-flat" href="' + epi[prop].subscription_web_sources[0].link + '">Watch Now</a></span>' +
                             '</div>' +
                             '<div class="card-reveal">' +
                             '<span class="card-title grey-text text-darken-4">' + epi[prop].title + '<i class="material-icons right">close</i></span>' +
