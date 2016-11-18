@@ -23,7 +23,6 @@
         $showdescrip.empty();
         $episodeList.empty();
         var title = $('#searchbar').val();
-        console.log(title);
 
         // get check box values
         var checkValues = [];
@@ -32,11 +31,9 @@
             checkValues.push($(this).val());
             return checkStr = checkValues.join(',');
         });
-        console.log(checkStr);
         // Display all shows with title matches
         $.get(searchUrl + title, function(data) {
             searchResults = data;
-            console.log(data);
             for (var i = 0; i < data.results.length; ++i) {
                 $showdescrip.append('<div class="col l4 m6 s12 row shows hoverable"' + 'id="' + data.results[i].id + '">' +
                     '<div class="card">' +
@@ -46,24 +43,23 @@
                     '</div>');
             }
             return searchResults;
-            console.log(searchResults);
+
         });
     })
 
 
 
-    $('div').on('click','.shows', function(event) {
+    $('div').on('click', '.shows', function(event) {
         var selected = $(this).attr('id');
         $showdescrip.empty();
-      $episodeList.empty();
-        console.log(selected);
+        $episodeList.empty();
         var showinfo = $.get(tvIdUrl + selected, function(data) {
-            $showdescrip.append('<section class="center-align">'
-                + '<img src="' + data.banner + '"/>'
-                +'<h1 class="grey-text text-darken-4">' + data.title + '</h1>'
-                +'<p class="grey-text text-darken-1">' + data.overview + '</p>'
-                +'</section>'
-              +  '<div class="divider"></div>'
+            $showdescrip.append('<section class="center-align">' +
+                '<img src="' + data.banner + '"/>' +
+                '<h1 class="grey-text text-darken-4">' + data.title + '</h1>' +
+                '<p class="grey-text text-darken-1">' + data.overview + '</p>' +
+                '</section>' +
+                '<div class="divider"></div>'
             );
 
         });
@@ -86,7 +82,7 @@
                     $episodeList.append('<h2 class=" col s12 grey-text text-darken-4"> Season ' + keys + '</h2>')
                     var epi = episodesBySeason[keys];
                     for (var prop in epi) {
-                      $episodeList.append(
+                        $episodeList.append(
                             '<div class="card row col l4 m6 s12  small">' +
                             '<div class="card-image waves-effect waves-block waves-light">' +
                             '<img class="activator" src="' + epi[prop].thumbnail_608x342 + '">' +
