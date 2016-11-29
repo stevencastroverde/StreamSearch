@@ -1,19 +1,18 @@
 var searchUrl = 'https://api-public.guidebox.com/v1.43/US/rKcE8UjpWG7r8hIkG3Dus9HltJxmoYxp/search/movie/title/';
 var movieIdUrl = 'https://api-public.guidebox.com/v1.43/US/rKcE8UjpWG7r8hIkG3Dus9HltJxmoYxp/movie/';
-var checkValues = [];
+	var checkValues = [];
 var resultsDiv = $('.results');
-var firstcall = new API(searchUrl);
-
+var firstCall = new API(searchUrl);
+var secondCall = new API(movieIdUrl);
 
 function API(url) {
-      this.data = null;
-    this.askForData = function(title, callback) {
-        $.get(url + title, function(info) {
-            data = info;
+	 let data = null;
+    this.askForData = function(identifier, callback) {
+        $.get(url + identifier, function(info) {
+          data = info;
             callback(info);
 
         })
-        console.log(this)
     }
 };
 
@@ -27,17 +26,38 @@ function printMovies(info) {
             '</div></div>' +
             '</li>');
     }
+};
+
+function movieDescription(info, checkValues) {
+	 var movie = info;
+	resultsDiv.append('<div class="row movie_poster">' +
+			'<img class="col s12 m6" src="' + movie.poster_400x570 + '"/>' +
+			'<h3 class=" grey-text text-darken-4 col s12 m6 ">' + movie.title + '</h3>' +
+			'<h4 class=" col s12 m6 grey-text text-darken-1  ">' + movie.release_year + '</h4>' +
+			'<p class="col s12 m6 grey-text text-darken-1  ">' + movie.overview + '</p>' +
+		 '</div>');
 
 
+// ***** Still Working on this!!! *******
+	// 	 if(movie.subscription_web_sources = 0){
+	// 		 resultsDiv.append('<h5>Sorry the Subscriptions you have do not offer this movie</h5>')
+	 //
+	// 	 }
+	// 	 for(var source in movie.subscription_web_sources){
+	// 		 if(source = checkValues[0]){
+	// 			 resultsDiv.append('<a class="lime btn">Watch Now</a>')
+	// 		 }
+	// 	 }
+	//  }
 
-}
-var checkedboxes = function(checkValues) {
-    $.each($('input[type=checkbox]:checked'), function() {
+
+function checkedBoxes(checkValues) {
+  $.each($('input[type=checkbox]:checked'), function() {
         checkValues.push($(this).val());
-        return checkValues;
+
 
     });
-
+		return checkValues;
 };
 
 // clear search results when clear button is hit
@@ -47,37 +67,35 @@ $('#resetbutton').on('click', function() {
 
 });
 
+// $('#backToSearch').on('click', function(firstCall){
+// 	resultsDiv.empty();
+// 	for (var i = 0; i < firstCall.data.results.length; i++) {
+// 		var movie = firstCall.data.results[i];
+// 			resultsDiv.append('<li class="col l4 m6 s12 row hoverable"' + 'id ="' + movie.id + '">' +
+// 					'<div class="card">' +
+// 					'<span class="card-title truncate">' + movie.title + '</span>' +
+// 					'<div class="card-image"> <img src="' + movie.poster_240x342 + '"/>' +
+// 					'</div></div>' +
+// 					'</li>');
+// 	}
+//
+// })
 
 // When form is submitted get values
 $('#submitbutton').on('click', function() {
     event.preventDefault();
     resultsDiv.empty();
     var title = $('#searchbar').val();
-    checkedboxes(checkValues);
-    firstcall.askForData(title, printMovies);
+    firstCall.askForData(title, printMovies);
 });
 
 
 
 resultsDiv.on('click', 'li', function() {
-    resultsDiv.empty();
-    var selected = $(this).attr('id');
-    $.get(movieIdUrl + selected, function(data, checkValues) {
-        resultsDiv.append('<div class="row movie_poster">' +
-            '<img class="col s12 m6" src="' + data.poster_400x570 + '"/>' +
-            '<h3 class=" grey-text text-darken-4 col s12 m6 ">' + data.title + '</h3>' +
-            '<h4 class=" col s12 m6 grey-text text-darken-1  ">' + data.release_year + '</h4>' +
-            '<p class="col s12 m6 grey-text text-darken-1  ">' + data.overview + '</p>' +
-            '<p id="link"></p>' +
-            '</div>');
-
-        if (data.subscription_web_sources.length > 0) {
-            $('#link').append('<a class="white-text  lime btn center-align" href="' + data.subscription_web_sources[0].link + '">Watch Now</a>')
-
-        } else {
-            $('#link').append('<h4 class=" grey-text text-darken-4 col s12 m6 "> Sorry the subscriptions you use do not have this movie</h4>');
+	var selected = $(this).attr('id');
+		resultsDiv.empty();
+		checkedBoxes(checkValues);
+    secondCall.askForData(selected, movieDescription);
 
 
-        }
-    })
-})
+});
