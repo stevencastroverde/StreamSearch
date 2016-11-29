@@ -6,14 +6,14 @@ var firstcall = new API(searchUrl);
 
 
 function API(url) {
-    this.data = null;
+      this.data = null;
     this.askForData = function(title, callback) {
         $.get(url + title, function(info) {
             data = info;
-            console.log(info)
             callback(info);
 
         })
+        console.log(this)
     }
 };
 
