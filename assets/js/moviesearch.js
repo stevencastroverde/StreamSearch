@@ -1,23 +1,31 @@
-var searchUrl = 'https://api-public.guidebox.com/v1.43/US/rKcE8UjpWG7r8hIkG3Dus9HltJxmoYxp/search/movie/title/';
+var searchUrl = 'http://localhost:3000/movie/search';
 var movieIdUrl = 'https://api-public.guidebox.com/v1.43/US/rKcE8UjpWG7r8hIkG3Dus9HltJxmoYxp/movie/';
 var checkValues = [];
 var resultsDiv = $('.results');
 var firstcall = new API(searchUrl);
 
 
-function API(url) {
+function API(Url) {
       this.data = null;
-    this.askForData = function(title, callback) {
-        $.get(url + title, function(info) {
-            data = info;
+    this.askForData = function(Data, callback) {
+        $.ajax({
+            type: 'GET',
+            url : Url,
+            data: Data,
+            dataType: 'json'
+          })
+          .done(function(info) {
+
+             data = info;
             callback(info);
 
         })
-        console.log(this)
+        
     }
 };
 
 function printMovies(info) {
+
     for (var i = 0; i < info.results.length; i++) {
       var movie = info.results[i];
         resultsDiv.append('<li class="col l4 m6 s12 row hoverable"' + 'id ="' + movie.id + '">' +
@@ -43,7 +51,7 @@ var checkedboxes = function(checkValues) {
 // clear search results when clear button is hit
 $('#resetbutton').on('click', function() {
     resultsDiv.empty();
-    $('#searchbar').val('');
+
 
 });
 
@@ -52,9 +60,14 @@ $('#resetbutton').on('click', function() {
 $('#submitbutton').on('click', function() {
     event.preventDefault();
     resultsDiv.empty();
-    var title = $('#searchbar').val();
-    checkedboxes(checkValues);
-    firstcall.askForData(title, printMovies);
+    let formData = {
+      'title': $('#searchbar').val(),
+      'subscriptions': (checkedboxes(checkValues))
+
+
+    }
+    console.log('sending request', formData);
+    firstcall.askForData(formData,printMovies);
 });
 
 
