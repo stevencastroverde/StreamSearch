@@ -1,0 +1,19 @@
+<section>
+  <md-input-container>
+    <label>Search</label>
+  <input type="text" ng-model="$ctrl.searchTerm">
+</md-input-container>
+<md-input-container>
+  <label>Type</label>
+  <md-select name="type" ng-model="$ctrl.sortType" required>
+            <md-option value="free">Free</md-option>
+            <md-option value="subscription">Subscription</md-option>
+            <md-option value="purchase">Purchase</md-option>
+          </md-select>
+  </md-input-container>
+  <md-virtual-repeat-container style="height: 300px">
+    <div md-virtual-repeat="source in $ctrl.sources | filter:$ctrl.searchTerm| orderBy:$ctrl.sortType">
+      <md-checkbox checklist-model="$ctrl.selectedSubscriptions" checklist-value="source.source" >{{source.display_name}}</md-checkbox>
+    </div>
+</md-virtual-repeat-container>
+</section>

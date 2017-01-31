@@ -1,53 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 	<head>
 		<meta charset="utf-8">
-		 <link rel="stylesheet" href="assets/sass/materialize.css" media="screen" title="no title">
-		 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		 <link rel="stylesheet" href="assets/css/landingpage.css" >
+		<base href="/">
+		<link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
 		<title>Stream Search</title>
 	</head>
-	<header class='cyan z-depth-2 col sm12 '>
-		<div class='container'>
-
-
-		<h1 class='white-text'>Stream Search</h1>
-
-		</div>
+	<header>
+	    <md-nav-bar class="md-accent" md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+				<md-nav-item md-nav-sref="home" name="home">Home</md-nav-item>
+				<md-nav-item md-nav-sref="tvsearch" name="tv">Television</md-nav-item>
+	      <md-nav-item md-nav-sref="moviesearch" name="movie">Movies</md-nav-item>
+	      <md-nav-item md-nav-sref="about" name="about">About</md-nav-item>
+	    </md-nav-bar>
 	</header>
-
-
 	<body >
-		<main class="container ">
-			<h3 class='center-align grey-text text-darken-4'>Now Search everywhere for what you want to watch!</h2>
-			<p class='center-align grey-text text-darken-1'>
-				Stream Search allows you to search Netflix, Hulu, and Amazon Prime convenienlty all in one place.</p>
-				<p class ="center-align grey-text text-darken-1">
-					To start select a button below.
-				</p>
-			</p>
-			<div class='row'>
-			<a  href="moviesearch.html" class=' lime waves-effect waves-light btn-large col s2 m3  l3 offset-s3 offset-m2 offset-l2'><i class="material-icons left">movie</i>Search Movies</a>
-			<a href="tvsearch.html" class=' lime waves-effect waves-light btn-large col s2 m3 l3 offset-s2 offset-m2 offset-l2 '><i class="material-icons right">tv</i>Search TV</a>
-			</div>
+		<main>
+			<ui-view></ui-view>
 		</main>
-
-
-
-
-
-
-
-
-        <footer class="page-footer cyan darken-2 z-depth-2">
-          <div class="footer-copyright">
-            <div class="container">
-            © 2016 Steven Castroverde
-            </div>
-          </div>
-        </footer>
-	<script src="assets/js/materialziejs/bin/materialize.js"></script>
-
-	</script>
+  <footer class="">
+			<div class="">
+        <div class="container">
+          © 2016 Steven Castroverde
+        </div>
+      </div>
+	</footer>
+		<script src="node_modules/angular/angular.min.js" charset="utf-8"></script>
+		<script src="node_modules/angular-material/angular-material.min.js" charset="utf-8"></script>
+		<script src="node_modules/angular-animate/angular-animate.min.js" charset="utf-8"></script>
+		<script src="node_modules/angular-aria/angular-aria.min.js" charset="utf-8"></script>
+		<script src="node_modules/angular-ui-router/release/angular-ui-router.min.js" charset="utf-8"></script>
+		<script src="node_modules/checklist-model/checklist-model.js" charset="utf-8"></script>
+		<script src="app.module.js" charset="utf-8"></script>
+		<script src="app.router.js" charset="utf-8"></script>
+		<script src="colorTheme.js" charset="utf-8"></script>
+		<script src="services/movieService.js" charset="utf-8"></script>
+		<script src="services/tvService.js" charset="utf-8"></script>
+		<script src="services/sourceService.js" charset="utf-8"></script>
+		<script src="home/home.component.js" charset="utf-8"></script>
+		<script src="tv/tv.component.js" charset="utf-8"></script>
+		<script src="movies/movie.component.js" charset="utf-8"></script>
+		<script src="about/about.component.js" charset="utf-8"></script>
+		<script src="cards/cards.component.js" charset="utf-8"></script>
+		<script src="sources/sources.component.js" charset="utf-8"></script>
 	</body>
 </html>

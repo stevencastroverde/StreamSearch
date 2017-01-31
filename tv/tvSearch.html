@@ -1,0 +1,20 @@
+
+
+			<form name="Search">
+				<md-input-container >
+					<input placeholder='Search TV Show Titles' type="text" ng-model="$ctrl.search.title" id='searchbar' value="" />
+					<label for="searchbar"><i class="material-icons">search</i></label>
+				</md-input-container>
+					<md-button ng-click="isSourceFormOpen = !isSourceFormOpen">View All Sources</md-button>
+					<search-sources selectedSubscriptions="[]" ng-show="isSourceFormOpen"></search-sources>
+				<md-input-container>
+					<md-button ng-click="$ctrl.searchTv()" id="submitbutton">Search!</md-button>
+					<md-button  id='resetbutton'>Clear</md-button>
+				</md-input-container>
+			</form>
+
+
+
+<md-content layout="row" layout-xs="column" layout-wrap>
+	<card ng-repeat="result in $ctrl.results" flex="33" content="result"></card>
+</md-content>
