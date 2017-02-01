@@ -1,0 +1,10 @@
+<md-card>
+ <img ng-src='{{$ctrl.content.poster_240x342}}' class="md-card-image" alt="{{$ctrl.content.title}} banner">
+ <md-card-header-text>
+   <md-title>{{$ctrl.content.title}} {{$ctrl.content.release_year}}</md-title>
+   <md-subhead>{{$ctrl.content.rating}}</md-subhead>
+	</md-card-header-text>
+ <md-card-actions layout="row" layout-align="end center">
+   <a ui-sref="singleMovie({movieId:{{$ctrl.content.id}}})">More Info</a>
+ </md-card-actions>
+</md-card>

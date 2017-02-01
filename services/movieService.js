@@ -9,7 +9,11 @@
         },
         getMovieById: function(movieId){
           return $http.get(`${apiUrl}/${movieId}`);
-        }
+        },
+				searchMovies: function(titleSearch){
+					return $http.get(`${apiUrl}/search/${titleSearch}`)
+
+				}
       };
     });
 }());

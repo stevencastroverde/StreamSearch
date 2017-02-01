@@ -1,0 +1,8 @@
+<h1>{{$ctrl.movieInfo.title}}</h1>
+<img ng-src="{{$ctrl.movieInfo.poster_400x570}}" alt="{{$ctrl.movieInfo.title}} movie poster">
+<md-list >
+	<md-list-item ng-repeat="castMember in $ctrl.movieInfo.cast"class="md-3-line">{{castMember.character_name}}</md-list-item>
+</md-list>
+<!-- <md-list ng-repeat"source in $ctrl.movieInfo.subscription_web_sources">
+<md-list-item >{{source.display_name}}</a></md-list-item>
+</md-list> -->

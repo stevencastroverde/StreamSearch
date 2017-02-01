@@ -1,15 +1,15 @@
 (function() {
   'use strict';
   angular.module('app')
-    .component('card', {
-      controller: cardController,
-      templateUrl: 'cards/cards.html',
+    .component('movieCard', {
+      controller: moviecardController,
+      templateUrl: 'movies/movieCards.html',
       bindings: {
         content: '<'
       }
       })
 
-    function cardController (tvService, movieService) {
+    function moviecardController (tvService, movieService) {
       const vm = this
 
       vm.$onInit = function () {

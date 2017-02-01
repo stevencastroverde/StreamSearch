@@ -24,6 +24,11 @@
         name: 'about',
         url:'/about',
         component:'about'
-      });
+      })
+			.state ({
+				name:'singleMovie',
+				url:'/movies/:movieId',
+				component:'singleMovie'
+			})
   }
 })();
