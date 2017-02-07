@@ -9,7 +9,7 @@
       }
       })
 
-    function moviecardController (tvService, movieService) {
+    function moviecardController (movieService) {
       const vm = this
 
       vm.$onInit = function () {

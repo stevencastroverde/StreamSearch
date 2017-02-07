@@ -30,5 +30,10 @@
 				url:'/movies/:movieId',
 				component:'singleMovie'
 			})
+      .state ({
+				name:'singleShow',
+				url:'/shows/:showId',
+				component:'singleShow'
+			})
   }
 })();

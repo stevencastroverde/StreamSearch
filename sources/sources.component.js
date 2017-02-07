@@ -6,21 +6,18 @@
       templateUrl:'sources/sources.html',
       bindings: {
         selectedSubscriptions: "="
-
       }
   })
 
   function sourcesController (sourceService) {
     const vm = this
-    vm.selectedSubscriptions = [];
     vm.$onInit = function (){
       sourceService.getWebSources()
         .then(response =>{
+          console.log(response);
           vm.sources = response.results
         })
-
-
-}
+    }
 
 
 

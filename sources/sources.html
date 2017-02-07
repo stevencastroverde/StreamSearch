@@ -12,8 +12,8 @@
           </md-select>
   </md-input-container>
   <md-virtual-repeat-container style="height: 300px">
-    <div md-virtual-repeat="source in $ctrl.sources | filter:$ctrl.searchTerm| orderBy:$ctrl.sortType">
-      <md-checkbox checklist-model="$ctrl.selectedSubscriptions" checklist-value="source.source" >{{source.display_name}}</md-checkbox>
+    <div md-virtual-repeat="source in $ctrl.sources | filter:$ctrl.searchTerm| orderBy:$ctrl.sortType" >
+      <md-checkbox ng-model="selectedSubscriptions.sources" checklist-value="source.source" >{{source.display_name}}</md-checkbox>
     </div>
 </md-virtual-repeat-container>
 </section>
